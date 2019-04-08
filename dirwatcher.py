@@ -21,6 +21,7 @@ logger = logging.getLogger(__file__)
 
 
 def find_text(filename, starting_line, search_text):
+    """function looks for the 'magic' text in each file collected in dictionary"""
     with open(filename) as f:
         # corner case for empty files.
         i = 0
@@ -33,6 +34,7 @@ def find_text(filename, starting_line, search_text):
 
 
 def watch_directory(args):
+    """looks through the directory for files with the given extension.  logs message when file is added and deleted.  calls the text search function"""
     watching_files = {}
     # filename will be the key, the last line read will be the value
     logger.info('Watching Directory: {}, File Extension: {}, For text: {}, at interval: {}'.format(
@@ -85,6 +87,7 @@ def signal_handler(sig_num, frame):
 
 
 def create_parser():
+    """creates parser for given arguments"""
     parser = argparse.ArgumentParser()
     parser.add_argument('-e', '--extension', default='.txt',
                         help="extension to be searched for")
